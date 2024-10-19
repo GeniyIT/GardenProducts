@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { fetchCategories } from "../../store/categoriesSlice";
 import { AppDispatch, RootState } from "../../store";
 import { Header } from "../Header/Header";
+import { Footer } from "../Footer/Footer";
 
 export function App() {
   const dispatch = useDispatch<AppDispatch>();
@@ -26,6 +27,7 @@ export function App() {
     <div>
       <Header />
       <Outlet />
+      <Footer />
     </div>
   );
 }

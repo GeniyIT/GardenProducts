@@ -1,20 +1,11 @@
-import { Provider } from 'react-redux';
-import { store } from './store';
-import AppRoutes from './routes';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import './styles/global.css'; // Общие стили
+import { Provider } from "react-redux";
+import { Outlet } from "react-router-dom";
 
 export function App() {
   return (
-    <Provider store={store}>
-      <div className="app-container">
-        <Header />
-        <main>
-          <AppRoutes />
-        </main>
-        <Footer />
-      </div>
-    </Provider>
+    <div>
+      dfgdfg dfg dfg dfgdfgd
+      <Outlet />
+    </div>
   );
 }

@@ -1,4 +1,5 @@
 import { Categories } from "./components/Categories/Categories";
+import { DiscountForm } from "./components/DiscountForm/DiscountForm";
 import { MainBanner } from "./components/MainBanner/MainBanner";
 import styles from "./MainPage.module.css";
 
@@ -8,6 +9,7 @@ export function MainPage() {
         <div className={styles.main}>
             <MainBanner title="Amazing Discounts on Garden Products!"/>
             <Categories />
+            <DiscountForm title="5% off on the first order" ImgUrl="/img/DiscountFormImage.png"/>
         </div>
     )
 }

@@ -1,18 +1,18 @@
 import { FC } from "react";
 import styles from "./CategoryCard.module.css";
 
-interface ICategoriesCardProps {
+interface ICategoryCardProps {
   title: string;
   ImgUrl: string;
 }
 
-export const CategoryCard: FC<ICategoriesCardProps> = ({ title, ImgUrl }) => {
+export const CategoryCard: FC<ICategoryCardProps> = ({ title, ImgUrl }) => {
   return (
-    <div className={styles.categories_card}>
-      <div className={styles.categories_card_img_container}>
-        <img className={styles.categories_card_img} src={ImgUrl} alt="" />
+    <div className={styles.category_card}>
+      <div className={styles.category_card_img_container}>
+        <img className={styles.category_card_img} src={ImgUrl} alt="" />
       </div>
-      <p className={styles.categories_card_title}>{title}</p>
+      <p className={styles.category_card_title}>{title}</p>
     </div>
   );
 };

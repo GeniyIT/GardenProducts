@@ -7,22 +7,23 @@ import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
 
 export function App() {
-  const dispatch = useDispatch<AppDispatch>();
-  const { loading, categories, error } = useSelector(
-    (state: RootState) => state.categories
-  );
-  useEffect(() => {
-    dispatch(fetchCategories());
-  }, [dispatch]);
+  // const dispatch = useDispatch<AppDispatch>();
+  // const { loading, categories, error } = useSelector(
+  //   (state: RootState) => state.categories
+  // );
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
+  // useEffect(() => {
+  //   dispatch(fetchCategories());
+  // }, [dispatch]);
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-  console.log(categories);
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
+
+  // if (error) {
+  //   return <div>Error: {error}</div>;
+  // }
+  // console.log(categories);
   return (
     <div>
       <Header />

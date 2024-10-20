@@ -1,4 +1,4 @@
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import { fetchCategories } from "../../store/categoriesSlice";

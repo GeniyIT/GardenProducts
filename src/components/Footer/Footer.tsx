@@ -29,7 +29,7 @@ export function Footer() {
                             <h1 className={styles.time_item}>24 hours a day</h1>
                         </div>
                     </div>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7135.702889417426!2d37.62555691719039!3d55.713226482491805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54b22a91ac945%3A0xf19f72681321ff46!2sIThub%20college!5e0!3m2!1sru!2sru!4v1729360318607!5m2!1sru!2sru" width="100%" height="350" frameBorder="0" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7135.702889417426!2d37.62555691719039!3d55.713226482491805!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b54b22a91ac945%3A0xf19f72681321ff46!2sIThub%20college!5e0!3m2!1sru!2sru!4v1729360318607!5m2!1sru!2sru" width="100%" height="350" frameBorder="0" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>

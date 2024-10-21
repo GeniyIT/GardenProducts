@@ -5,25 +5,34 @@ import { fetchCategories } from "../../store/categoriesSlice";
 import { AppDispatch, RootState } from "../../store";
 import { Header } from "../Header/Header";
 import { Footer } from "../Footer/Footer";
+import { fetchAllProducts } from "../../store/productsSlice";
 
 export function App() {
-  // const dispatch = useDispatch<AppDispatch>();
-  // const { loading, categories, error } = useSelector(
-  //   (state: RootState) => state.categories
-  // );
+  const dispatch = useDispatch<AppDispatch>();
+  const { loading: loadingCategories, categories } = useSelector(
+    (state: RootState) => state.categories
+  );
+  const { loading: loadingProducts, products } = useSelector(
+    (state: RootState) => state.products
+  );
 
-  // useEffect(() => {
-  //   dispatch(fetchCategories());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchCategories());
+  }, [dispatch, categories.length]);
 
-  // if (loading) {
-  //   return <div>Loading...</div>;
-  // }
+  useEffect(() => {
+    dispatch(fetchAllProducts());
+  }, [dispatch, products.length]);
 
-  // if (error) {
-  //   return <div>Error: {error}</div>;
-  // }
-  // console.log(categories);
+  if (loadingCategories) {
+    return <div>Loading categories...</div>;
+  }
+
+  if (loadingProducts) {
+    return <div>Loading products...</div>;
+  }
+  console.log(products);
+  console.log(categories);
   return (
     <div>
       <Header />

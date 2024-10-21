@@ -26,15 +26,7 @@ export function Categories() {
       </div>
       <div className={styles.categories_card}>
         {categories.map((item, index) =>
-          index <= 3 ? (
-            <CategoryCard
-              key={"card-" + index}
-              ImgUrl={apiUrl + item.image}
-              title={item.title}
-            />
-          ) : (
-            ""
-          )
+          index <= 3 ? <CategoryCard {...item} key={"card-" + index} /> : ""
         )}
       </div>
     </div>

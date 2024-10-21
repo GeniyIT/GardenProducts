@@ -17,11 +17,7 @@ export function CategoriesPage() {
         {categories.length === 0
           ? ""
           : categories.map((item, index) => (
-              <CategoryCard
-                key={"card-" + index}
-                ImgUrl={apiUrl + item.image}
-                title={item.title}
-              />
+              <CategoryCard {...item} key={"card-" + index} />
             ))}
       </div>
     </div>

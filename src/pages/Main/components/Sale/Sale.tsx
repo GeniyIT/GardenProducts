@@ -3,7 +3,6 @@ import styles from "./Sale.module.css";
 import { AppDispatch, RootState } from "../../../../store";
 import { useEffect } from "react";
 import {
-  fetchAllProducts,
   getSalesProducts,
   setCurrentCategoryProducts,
   setCurrentProduct,
@@ -43,15 +42,19 @@ export function Sale() {
         </div>
       </div>
       <div className={styles.sale_card}>
-        {salesProducts.map((saleProduct, idx) => (
-          <SaleCard
-            key={`sale-card-${idx}`}
-            imgUrl={apiUrl + saleProduct.image}
-            title={saleProduct.title}
-            price={saleProduct.price}
-            discountPrice={saleProduct.discont_price as number}
-          />
-        ))}
+        {salesProducts.map((saleProduct, idx) =>
+          idx <= 3 ? (
+            <SaleCard
+              key={`sale-card-${idx}`}
+              imgUrl={apiUrl + saleProduct.image}
+              title={saleProduct.title}
+              price={saleProduct.price}
+              discountPrice={saleProduct.discont_price as number}
+            />
+          ) : (
+            ""
+          )
+        )}
       </div>
     </div>
   );

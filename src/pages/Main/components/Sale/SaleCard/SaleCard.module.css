@@ -5,6 +5,9 @@
     border: 1px solid #DDDDDD;
     border-radius: 12px;
     padding-bottom: 32px;
+    height: 422px;
+    position: relative;
+    width: calc(25% - 20px);
 }
 
 .sale_card_img_container {
@@ -17,7 +20,7 @@
 .sale_card_img {
     width: 100%;
     height: 100%;
-    border-radius: 12px;
+    border-radius: 12px 12px 0 0;
 }
 
 .sale_card_info {
@@ -31,6 +34,9 @@
 .sale_card_title {
     font-size: 20px;
     font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .sale_card_price_container {
@@ -52,12 +58,12 @@
 }
 
 .sale_card_discount_percentage {
-    position: relative;
-    top: 16px;
+    position: absolute;
     right: 16px;
+    top: 16px;
     background-color: #339933;
     color: white;
-    
+
     font-size: 20px;
     font-weight: 600;
     padding: 4px 8px;

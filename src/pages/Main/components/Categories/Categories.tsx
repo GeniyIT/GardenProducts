@@ -3,7 +3,7 @@ import styles from "./Categories.module.css";
 import { AppDispatch, RootState } from "../../../../store";
 import { fetchCategories } from "../../../../store/categoriesSlice";
 import { useEffect } from "react";
-import { CategoryCard } from "./CategoryCard/CategoryCard";
+import { CategoryCard } from "../../../../components/CategoryCard/CategoryCard";
 import { apiUrl } from "../../../../config/consts";
 
 export function Categories() {

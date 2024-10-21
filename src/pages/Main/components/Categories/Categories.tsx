@@ -7,21 +7,11 @@ import { CategoryCard } from "../../../../components/CategoryCard/CategoryCard";
 import { apiUrl } from "../../../../config/consts";
 
 export function Categories() {
-  const dispatch = useDispatch<AppDispatch>();
-  const { loading, categories, error } = useSelector(
+  const { loading, categories } = useSelector(
     (state: RootState) => state.categories
   );
-
-  useEffect(() => {
-    dispatch(fetchCategories());
-  }, [dispatch]);
-
   if (loading) {
     return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
   }
   console.log(categories);
 

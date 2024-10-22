@@ -28,7 +28,9 @@ export function ProductsPage() {
   return (
     <div className={styles.products_page}>
       <div className={styles.products_page_wrapper}>
-        <img className={styles.products_page_img} src={apiUrl + image} alt="" />
+        <div className={styles.products_page_img_container}>
+          <img className={styles.products_page_img} src={apiUrl + image} alt="" />
+        </div>
         <div className={styles.products_page_info_container}>
           <h1 className={styles.products_page_title}>{title}</h1>
           <div className={styles.products_page_price_wrapper}>

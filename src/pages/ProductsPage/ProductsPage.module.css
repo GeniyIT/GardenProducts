@@ -1,6 +1,5 @@
 .products_page {
     padding-top: 116px;
-    margin: 0 40px;
     display: flex;
     width: 100%;
     align-items: center;
@@ -10,6 +9,11 @@
 .products_page_wrapper {
     display: flex;
     gap: 32px;
+}
+
+.products_page_img_container {
+    height: 572px;
+    width: 780px;
 }
 
 .products_page_img {
@@ -22,6 +26,7 @@
     display: flex;
     flex-direction: column;
     gap: 32px;
+    width: 548px;
 }
 
 .products_page_title {
@@ -57,8 +62,8 @@
 
 .products_page_discount_percentage {
     position: absolute;
-    right: 0;
-    top: 0;
+    right: 100px;
+    top: 10px;
     background-color: #339933;
     color: white;
 
@@ -74,6 +79,10 @@
     font-weight: 600;
     width: 316px;
     height: 58px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 .products_page_description_container {

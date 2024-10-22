@@ -58,10 +58,13 @@ export const productsSlice = createSlice({
         (product) => product.discont_price
       );
     },
+
     setCurrentProduct: (state, action: PayloadAction<number>) => {
       state.currentProduct = state.products[action.payload - 1];
     },
+
     setCurrentCategoryProducts: (state, action: PayloadAction<number>) => {
+      console.log(`CATEGORY ID`, action);
       state.currentCategoryProducts = state.products.filter(
         (product) => product.categoryId === action.payload
       );

@@ -2,9 +2,9 @@ export enum routes {
   home = "/",
   allCategories = "/categories",
   allSales = "/sales/",
-  category = "/category/:id",
-  product = "/product/:id",
-  cart = "/cart",
+  category = "/category/:idCategory",
+  product = "/product/:idProduct",
+  card = "/card",
   allProducts = "/products/",
   notFound = "/404",
 }

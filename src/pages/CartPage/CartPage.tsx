@@ -1,5 +1,7 @@
 import { useForm } from "react-hook-form";
 import styles from "./CartPage.module.css";
+import { useState } from "react";
+import Modal from "../../components/Modal/Modal";
 
 export function CartPage() {
 
@@ -7,6 +9,15 @@ export function CartPage() {
     const onSubmit = (data: any) => {
         console.log(data);
     }
+
+    const [isModalOpen, setModalOpen] = useState(false);
+    const openModal = () => {
+        setModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalOpen(false);
+    };
 
     return (
         <div className={styles.cart_page}>
@@ -20,7 +31,7 @@ export function CartPage() {
             <div className={styles.cart_content_container}>
                 <div className={styles.cart_content}>
                     <div className={styles.cart_list}>
-                
+
                     </div>
                     <div className={styles.cart_order_form_container}>
                         <div className={styles.cart_order_details}>
@@ -38,12 +49,21 @@ export function CartPage() {
                                 <input className={styles.cart_order_form_input} type="text" placeholder="Name" {...register("name")} />
                                 <input className={styles.cart_order_form_input} type="text" placeholder="Phone number" {...register("phone")} />
                                 <input className={styles.cart_order_form_input} type="email" placeholder="Email" {...register("email")} />
-                                <button className={styles.cart_order_form_button}>Order</button>
+                                <button className={styles.cart_order_form_button} onClick={openModal}>Order</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
+            <Modal isOpen={isModalOpen} closeModal={closeModal}>
+                <div className={styles.modal_container}>
+                    <h2 className={styles.modal_title}>Congratulations! </h2>
+                    <div className={styles.modal_text_container}>
+                        <p className={styles.modal_text}>Your order has been successfully placed on the website.</p>
+                        <p className={styles.modal_text}>A manager will contact you shortly to confirm your order.</p>
+                    </div>
+                </div>
+            </Modal>
         </div>
     );
 }

@@ -90,13 +90,18 @@ export const productsSlice = createSlice({
       state.filterOpts = action.payload;
     },
     setFilteredProducts: (state, action: PayloadAction<IProduct[]>) => {
-      console.log(action.payload);
-      console.log(current(state.filterOpts));
+      console.log("[FILTERED PRODUCTS OPTIONS]: ", current(state.filterOpts));
+      console.log("[FILTERED PRODUCTS ACTION]: ", action.payload);
       const priceOpts = state.filterOpts.price;
       const discontCheck = state.filterOpts.getDiscont;
 
       if (priceOpts.from === null) priceOpts.from = 0;
-      if (priceOpts.to === null || priceOpts.to === 0) priceOpts.to = Infinity;
+      if (
+        priceOpts.to === null ||
+        priceOpts.to === 0 ||
+        priceOpts.to < priceOpts.from
+      )
+        priceOpts.to = Infinity;
 
       state.filteredProducts = action.payload.filter(
         (product) =>

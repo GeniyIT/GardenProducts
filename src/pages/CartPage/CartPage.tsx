@@ -20,7 +20,7 @@ export function CartPage() {
             <div className={styles.cart_content_container}>
                 <div className={styles.cart_content}>
                     <div className={styles.cart_list}>
-
+                
                     </div>
                     <div className={styles.cart_order_form_container}>
                         <div className={styles.cart_order_details}>

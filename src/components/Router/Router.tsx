@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { App } from "../App/App";
-import { NotFoundPage } from "../../pages/NotFound/NotFoundPage";
+import { NotFoundPage } from "../../pages/NotFoundPage/NotFoundPage";
 import { MainPage } from "../../pages/Main/MainPage";
 import { routes } from "../../config/routes";
 import { CategoriesPage } from "../../pages/Categories/CategoriesPage";

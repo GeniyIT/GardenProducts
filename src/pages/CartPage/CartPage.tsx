@@ -45,7 +45,9 @@ export const CartPage = () => {
             <div className={styles.cart_order_details}>
               <h1 className={styles.cart_order_title}>Order details</h1>
               <div className={styles.cart_order_total}>
-                <h1 className={styles.cart_order_total_title}>4 Items</h1>
+                <h1 className={styles.cart_order_total_title}>
+                  {itemKeys.length} Items
+                </h1>
                 <div className={styles.cart_order_total_price}>
                   <h1 className={styles.cart_order_total_title}>Total</h1>
                   <h1 className={styles.cart_order_total_price_value}>

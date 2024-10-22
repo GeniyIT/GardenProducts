@@ -36,3 +36,32 @@
     display: flex;
     gap: 16px;
 }
+
+.cart_card_info_delete {
+    cursor: pointer;
+}
+
+.cart_card_info_price {
+    display: flex;
+    gap: 20px;
+    padding: 10px 15px;
+    border: 1px solid #8B8B8B;
+    border-radius: 8px;
+
+    >p {
+        font-size: 26px;
+        font-weight: 500;
+        border-left: 1px solid #8B8B8B;
+        border-right: 1px solid #8B8B8B;
+    }
+
+
+    >button {
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
+        font-size: 26px;
+        padding: 0 10px;
+        font-weight: 700;
+    }
+}

@@ -17,12 +17,16 @@ export const CartCard: FC<TItemCart> = ({
           <h1>{title}</h1>
           <img
             className={styles.cart_card_info_delete}
-            src="/img/delete.svg"
+            src="/src/assets/img/delete.svg"
             alt=""
           />
         </div>
         <div className={styles.cart_card_info_price_container}>
-          <button className={styles.cart_card_info_button}>$100</button>
+          <div className={styles.cart_card_info_price}>
+            <button>-</button>
+            <p></p>
+            <button>+</button>
+          </div>
           <div className={styles.products_page_price_container}>
             {discont_price ? (
               <>

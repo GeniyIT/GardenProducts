@@ -54,8 +54,15 @@ const cartSlice = createSlice({
       }
       updateTotalSum(state);
     },
+    sendOrder: (state) => {
+      const items = state.items;
+      for (const key in items) {
+        delete items[key];
+      }
+      updateTotalSum(state);
+    },
   },
 });
 
-export const { addItem, decCountItem } = cartSlice.actions;
+export const { addItem, decCountItem, sendOrder } = cartSlice.actions;
 export const cartReducer = cartSlice.reducer;

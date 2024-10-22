@@ -8,6 +8,7 @@
   height: 422px;
   position: relative;
   width: calc(25% - 20px);
+  cursor: pointer;
 }
 
 .products_card_img_container {

@@ -68,6 +68,14 @@
     border-radius: 6px;
 }
 
+.products_page_button {
+    background: #339933;
+    font-size: 20px;
+    font-weight: 600;
+    width: 316px;
+    height: 58px;
+}
+
 .products_page_description_container {
     display: flex;
     flex-direction: column;

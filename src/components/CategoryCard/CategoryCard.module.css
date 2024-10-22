@@ -4,6 +4,7 @@
   align-items: center;
   gap: 16px;
   width: 100%;
+  cursor: pointer;
 }
 
 .category_card_img_container {

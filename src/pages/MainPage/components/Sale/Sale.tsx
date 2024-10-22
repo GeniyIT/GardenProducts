@@ -8,7 +8,8 @@ import {
   setCurrentProduct,
 } from "../../../../store/productsSlice";
 import { SaleCard } from "./SaleCard/SaleCard";
-import { apiUrl } from "../../../../config/consts";
+import { useNavigate } from 'react-router-dom';
+import { routes } from '../../../../config/routes';
 
 export function Sale() {
   const dispatch = useDispatch<AppDispatch>();
@@ -32,13 +33,15 @@ export function Sale() {
   console.log("[CURRENT CATEGORY PRODUCTS]: ", currentCategoryProducts);
   console.log("[CURRENT PRODUCT]: ", currentProduct);
   console.log(salesProducts);
+
+  const navigate = useNavigate();
   return (
     <div className={styles.sale}>
       <div className={styles.sale_title_container}>
         <h1 className={styles.sale_title}>Sale</h1>
         <div className={styles.sale_button_container}>
           <div className={styles.sale_button_line}></div>
-          <button className={styles.sale_button}>All sale</button>
+          <button className={styles.sale_button} onClick={() => navigate(routes.allSales)}>All sale</button>
         </div>
       </div>
       <div className={styles.sale_card}>

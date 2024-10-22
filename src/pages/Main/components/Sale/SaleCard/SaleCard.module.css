@@ -43,6 +43,7 @@
 .sale_card_price_container {
   display: flex;
   gap: 16px;
+  align-items:flex-end;
 }
 
 .sale_card_discount_price {

@@ -26,7 +26,7 @@ export const ProductsCard: FC<IProductsCard> = ({
                             <del className={styles.products_card_price}>${price}</del>
                         </>
                     ) : (
-                        <p className={styles.products_card_price}>${price}</p>
+                        <p className={styles.products_card_discount_price}>${price}</p>
                     )}
                 </div>
             </div>

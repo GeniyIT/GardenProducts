@@ -18,7 +18,7 @@ export function Header() {
                     <a onClick={() => navigate(routes.allProducts)} className={styles.header_list_item}>All products</a>
                     <a onClick={() => navigate(routes.allSales)} className={styles.header_list_item}>All sales</a>
                 </div>
-                <button className={styles.header_button}>
+                <button onClick={() => navigate(routes.cart)} className={styles.header_button}>
                     <Shop />
                     <span className={styles.button_counter}>
                         12

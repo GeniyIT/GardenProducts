@@ -4,7 +4,7 @@ export enum routes {
   allSales = "/sales/",
   category = "/category/:id",
   product = "/product/:id",
-  card = "/card",
+  cart = "/cart",
   allProducts = "/products/",
   notFound = "/404",
 }

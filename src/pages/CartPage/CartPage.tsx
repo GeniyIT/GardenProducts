@@ -2,13 +2,15 @@ import { useForm } from "react-hook-form";
 import styles from "./CartPage.module.css";
 import { FC, useState } from "react";
 import Modal from "../../components/Modal/Modal";
-import { useSelector } from "react-redux";
-import { RootState } from "../../store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
 import { CartCard } from "./CartCard/CartCard";
-import { TItemCart } from "../../store/cartSlice";
+import { sendOrder, TItemCart } from "../../store/cartSlice";
 import { mapObject } from "../../utils/mapObject";
 
 export const CartPage = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const { items, totalPrice } = useSelector((state: RootState) => state.cart);
   const { register, handleSubmit } = useForm();
   const onSubmit = (data: any) => {
@@ -18,6 +20,7 @@ export const CartPage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const openModal = () => {
     setModalOpen(true);
+    dispatch(sendOrder());
   };
 
   const closeModal = () => {
@@ -45,7 +48,9 @@ export const CartPage = () => {
             <div className={styles.cart_order_details}>
               <h1 className={styles.cart_order_title}>Order details</h1>
               <div className={styles.cart_order_total}>
-                <h1 className={styles.cart_order_total_title}>4 Items</h1>
+                <h1 className={styles.cart_order_total_title}>
+                  {itemKeys.length} Items
+                </h1>
                 <div className={styles.cart_order_total_price}>
                   <h1 className={styles.cart_order_total_title}>Total</h1>
                   <h1 className={styles.cart_order_total_price_value}>

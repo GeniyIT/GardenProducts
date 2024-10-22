@@ -1,38 +1,63 @@
-import styles from "./ProductsPage.module.css"
+import { useParams } from "react-router-dom";
+import styles from "./ProductsPage.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../store";
+import { useEffect } from "react";
+import { setCurrentProduct } from "../../store/productsSlice";
+import { apiUrl } from "../../config/consts";
 
 export function ProductsPage() {
+  const dispatch = useDispatch<AppDispatch>();
+  const { idProduct } = useParams<{ idProduct: string }>();
+  const { currentProduct } = useSelector((state: RootState) => state.products);
 
-    const percentage = discountPrice ? Math.floor(((price - discountPrice) / price) * 100) : null;
+  useEffect(() => {
+    dispatch(setCurrentProduct(Number(idProduct)));
+  }, [dispatch]);
 
-    return (
-        <div className={styles.products_page}>
-            <div className={styles.products_page_wrapper}>
-                <img className={styles.products_page_img} src={image} alt="" />
-                <div className={styles.products_page_info_container}>
-                    <h1 className={styles.products_page_title}>{title}</h1>
-                    <div className={styles.products_page_price_wrapper}>
-                        <div className={styles.products_page_price_container}>
-                            {discountPrice ? (
-                                <>
-                                    <p className={styles.products_page_discount_price}>${discountPrice}</p>
-                                    <del className={styles.products_page_price}>${price}</del>
-                                </>
-                            ) : (
-                                <p className={styles.products_page_discount_price}>${price}</p>
-                            )}
-                        </div>
-                        {discountPrice && (
-                            <div className={styles.products_page_discount_percentage}>-{percentage}%</div>
-                        )}
-                    </div>
+  if (!currentProduct) {
+    return <div>Not found...</div>;
+  }
+  const { title, price, image, description, discont_price } = currentProduct;
+  const percentage = discont_price
+    ? Math.floor(((price - discont_price) / price) * 100)
+    : null;
 
-                    <button className={styles.products_page_button}>Add to cart</button>
-                    <div className={styles.products_page_description_container}>
-                        <h1 className={styles.products_page_description_title}>Description</h1>
-                        <p className={styles.products_page_description}>{description}</p>
-                    </div>
-                </div>
+  return (
+    <div className={styles.products_page}>
+      <div className={styles.products_page_wrapper}>
+        <img className={styles.products_page_img} src={apiUrl + image} alt="" />
+        <div className={styles.products_page_info_container}>
+          <h1 className={styles.products_page_title}>{title}</h1>
+          <div className={styles.products_page_price_wrapper}>
+            <div className={styles.products_page_price_container}>
+              {discont_price ? (
+                <>
+                  <p className={styles.products_page_discount_price}>
+                    ${discont_price}
+                  </p>
+                  <del className={styles.products_page_price}>${price}</del>
+                </>
+              ) : (
+                <p className={styles.products_page_discount_price}>${price}</p>
+              )}
             </div>
+            {discont_price && (
+              <div className={styles.products_page_discount_percentage}>
+                -{percentage}%
+              </div>
+            )}
+          </div>
+
+          <button className={styles.products_page_button}>Add to cart</button>
+          <div className={styles.products_page_description_container}>
+            <h1 className={styles.products_page_description_title}>
+              Description
+            </h1>
+            <p className={styles.products_page_description}>{description}</p>
+          </div>
         </div>
-    )
+      </div>
+    </div>
+  );
 }

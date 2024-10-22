@@ -5,6 +5,7 @@ import { AppDispatch, RootState } from "../../store";
 import { useEffect } from "react";
 import { setCurrentProduct } from "../../store/productsSlice";
 import { apiUrl } from "../../config/consts";
+import { addItem } from "../../store/cartSlice";
 
 export function ProductsPage() {
   const dispatch = useDispatch<AppDispatch>();
@@ -18,7 +19,8 @@ export function ProductsPage() {
   if (!currentProduct) {
     return <div>Not found...</div>;
   }
-  const { title, price, image, description, discont_price } = currentProduct;
+  const { id, title, price, image, description, discont_price } =
+    currentProduct;
   const percentage = discont_price
     ? Math.floor(((price - discont_price) / price) * 100)
     : null;
@@ -49,7 +51,16 @@ export function ProductsPage() {
             )}
           </div>
 
-          <button className={styles.products_page_button}>Add to cart</button>
+          <button
+            className={styles.products_page_button}
+            onClick={() => {
+              console.log(
+                dispatch(addItem({ id, image, title, price, discont_price }))
+              );
+            }}
+          >
+            Add to cart
+          </button>
           <div className={styles.products_page_description_container}>
             <h1 className={styles.products_page_description_title}>
               Description

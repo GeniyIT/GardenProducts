@@ -6,6 +6,9 @@ import { IProduct } from "../../store/productsSlice";
 import { useNavigate } from "react-router-dom";
 import { generatePath } from "../../utils/genPath";
 import { routes } from "../../config/routes";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store";
+import { addItem } from "../../store/cartSlice";
 
 export const ProductsCard: FC<IProduct> = ({
   id,
@@ -14,6 +17,7 @@ export const ProductsCard: FC<IProduct> = ({
   price,
   discont_price,
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const percentage = discont_price
     ? Math.floor(((price - discont_price) / price) * 100)
@@ -53,7 +57,15 @@ export const ProductsCard: FC<IProduct> = ({
           -{percentage}%
         </div>
       )}
-      <button className={styles.products_card_button_cart}>Add to cart</button>
+      <button
+        className={styles.products_card_button_cart}
+        onClick={() => {
+          console.log(123);
+          dispatch(addItem({ id, title, image, price, discont_price }));
+        }}
+      >
+        Add to cart
+      </button>
     </div>
   );
 };

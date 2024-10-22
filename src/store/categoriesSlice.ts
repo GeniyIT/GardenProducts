@@ -2,14 +2,6 @@ import { PayloadAction } from "../../node_modules/@reduxjs/toolkit/src/createAct
 import { createSlice, Dispatch } from "@reduxjs/toolkit";
 import { getAllCategories } from "../utils/api";
 
-export interface IProductsCard {
-  id: number;
-  title: string;
-  image: string;
-  price: number;
-  discountPrice?: number;
-}
-
 export interface ICategory {
   id: number;
   title: string;

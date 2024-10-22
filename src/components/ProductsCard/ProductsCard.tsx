@@ -3,6 +3,9 @@ import styles from "./productsCard.module.css";
 import { IProductsCard } from "../../store/categoriesSlice";
 import { apiUrl } from "../../config/consts";
 import { IProduct } from "../../store/productsSlice";
+import { useNavigate } from "react-router-dom";
+import { generatePath } from "../../utils/genPath";
+import { routes } from "../../config/routes";
 
 export const ProductsCard: FC<IProduct> = ({
   id,
@@ -11,12 +14,16 @@ export const ProductsCard: FC<IProduct> = ({
   price,
   discont_price,
 }) => {
+  const navigate = useNavigate();
   const percentage = discont_price
     ? Math.floor(((price - discont_price) / price) * 100)
     : null;
 
+  const openProductInfo = () => {
+    navigate(generatePath(routes.product, { idProduct: id }));
+  };
   return (
-    <div className={styles.products_card}>
+    <div className={styles.products_card} onClick={openProductInfo}>
       <div className={styles.products_card_img_container}>
         <img
           className={styles.products_card_img}

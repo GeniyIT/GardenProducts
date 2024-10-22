@@ -5,7 +5,10 @@ import styles from "./CategoryPage.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../store";
 import { useEffect } from "react";
-import { setCurrentCategoryProducts } from "../../store/productsSlice";
+import {
+  setCurrentCategoryProducts,
+  setFilteredProducts,
+} from "../../store/productsSlice";
 import { routes } from "../../config/routes";
 
 export function CategoryPage() {
@@ -13,25 +16,25 @@ export function CategoryPage() {
   const { idCategory } = useParams<{ idCategory: string }>();
   const { categories } = useSelector((state: RootState) => state.categories);
 
-  const { currentCategoryProducts, products } = useSelector(
+  const { currentCategoryProducts, filterOpts, filteredProducts } = useSelector(
     (state: RootState) => state.products
   );
-
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    console.log(Number(idCategory));
     dispatch(setCurrentCategoryProducts(Number(idCategory)));
   }, [dispatch]);
 
-  console.log(products);
-  console.log(currentCategoryProducts);
-  console.log(categories[Number(idCategory) - 1]);
+  useEffect(() => {
+    dispatch(setFilteredProducts(currentCategoryProducts));
+  }, [currentCategoryProducts, dispatch, filterOpts]);
 
   if (!categories[Number(idCategory) - 1]) {
-    // return <div>Not found</div>;
-    return navigate(routes.notFound);
+    return <div>Not found</div>;
   }
+
+  console.log("[FILTER_OPTIONS]", filterOpts);
+  console.log("[FILTER_PRODUCTS]", filteredProducts);
   return (
     <div className={styles.category_page}>
       <h1 className={styles.category_page_title}>
@@ -39,7 +42,7 @@ export function CategoryPage() {
       </h1>
       <FilterProducts isSales={false} />
       <div style={{ display: "flex", flexWrap: "wrap", gap: "32px" }}>
-        {currentCategoryProducts.map((product, idx) => (
+        {filteredProducts.map((product, idx) => (
           <ProductsCard {...product} key={"product-id-" + idx} />
         ))}
       </div>

@@ -1,6 +1,6 @@
 import { getAllProducts } from "../utils/api";
 import { PayloadAction } from "./../../node_modules/@reduxjs/toolkit/src/createAction";
-import { createSlice, Dispatch } from "@reduxjs/toolkit";
+import { createSlice, current, Dispatch } from "@reduxjs/toolkit";
 
 export interface IProduct {
   id: number;
@@ -14,6 +14,15 @@ export interface IProduct {
   categoryId: number;
 }
 
+export interface IFilterOpts {
+  price: {
+    from: number | null;
+    to: number | null;
+  };
+  getDiscont: boolean;
+  sortMethod: "default" | "lower" | "upper";
+}
+
 interface IProductsState {
   loading: boolean;
   error: string | null;
@@ -21,6 +30,8 @@ interface IProductsState {
   salesProducts: IProduct[];
   currentCategoryProducts: IProduct[];
   currentProduct: IProduct | null;
+  filteredProducts: IProduct[];
+  filterOpts: IFilterOpts;
 }
 
 const initialProductsState: IProductsState = {
@@ -29,7 +40,13 @@ const initialProductsState: IProductsState = {
   products: [],
   salesProducts: [],
   currentCategoryProducts: [],
+  filteredProducts: [],
   currentProduct: null,
+  filterOpts: {
+    sortMethod: "default",
+    price: { from: null, to: null },
+    getDiscont: null,
+  },
 };
 export const productsSlice = createSlice({
   name: "products",
@@ -69,6 +86,34 @@ export const productsSlice = createSlice({
         (product) => product.categoryId === action.payload
       );
     },
+    setFilterOptions: (state, action: PayloadAction<IFilterOpts>) => {
+      state.filterOpts = action.payload;
+    },
+    setFilteredProducts: (state, action: PayloadAction<IProduct[]>) => {
+      console.log(action.payload);
+      console.log(current(state.filterOpts));
+      const priceOpts = state.filterOpts.price;
+      const discontCheck = state.filterOpts.getDiscont;
+
+      if (priceOpts.from === null) priceOpts.from = 0;
+      if (priceOpts.to === null || priceOpts.to === 0) priceOpts.to = Infinity;
+
+      state.filteredProducts = action.payload.filter(
+        (product) =>
+          product.price >= priceOpts.from &&
+          product.price <= priceOpts.to &&
+          (discontCheck ? product.discont_price : true)
+      );
+
+      switch (state.filterOpts.sortMethod) {
+        case "lower":
+          state.filteredProducts.sort((a, b) => a.price - b.price);
+          break;
+        case "upper":
+          state.filteredProducts.sort((a, b) => b.price - a.price);
+          break;
+      }
+    },
   },
 });
 
@@ -79,6 +124,8 @@ export const {
   getSalesProducts,
   setCurrentProduct,
   setCurrentCategoryProducts,
+  setFilterOptions,
+  setFilteredProducts,
 } = productsSlice.actions;
 export const fetchAllProducts = () => async (dispatch: Dispatch) => {
   dispatch(fetchProductsStart());

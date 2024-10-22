@@ -1,14 +1,27 @@
 import { FC } from "react";
 import styles from "./CartCard.module.css";
-import { TItemCart } from "../../../store/cartSlice";
+import {
+  addItem,
+  decCountItem,
+  deleteItem,
+  incCountItem,
+  TItemCart,
+} from "../../../store/cartSlice";
 import { apiUrl } from "../../../config/consts";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../../store";
 
 export const CartCard: FC<TItemCart> = ({
+  id,
   discont_price,
   price,
   title,
   image,
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const { items } = useSelector((state: RootState) => state.cart);
+
   return (
     <div className={styles.cart_card}>
       <img className={styles.cart_card_img} src={apiUrl + image} alt="" />
@@ -19,13 +32,26 @@ export const CartCard: FC<TItemCart> = ({
             className={styles.cart_card_info_delete}
             src="/src/assets/img/delete.svg"
             alt=""
+            onClick={() => dispatch(deleteItem(id))}
           />
         </div>
         <div className={styles.cart_card_info_price_container}>
           <div className={styles.cart_card_info_price}>
-            <button>-</button>
-            <p></p>
-            <button>+</button>
+            <button
+              onClick={() => {
+                dispatch(decCountItem(id));
+              }}
+            >
+              -
+            </button>
+            <p>{items[id].count}</p>
+            <button
+              onClick={() => {
+                dispatch(incCountItem(id));
+              }}
+            >
+              +
+            </button>
           </div>
           <div className={styles.products_page_price_container}>
             {discont_price ? (

@@ -54,6 +54,11 @@ const cartSlice = createSlice({
       }
       updateTotalSum(state);
     },
+    incCountItem: (state, action: PayloadAction<number>) => {
+      const item = state.items[action.payload];
+      item.count++;
+      updateTotalSum(state);
+    },
     sendOrder: (state) => {
       const items = state.items;
       for (const key in items) {
@@ -61,8 +66,13 @@ const cartSlice = createSlice({
       }
       updateTotalSum(state);
     },
+    deleteItem: (state, action: PayloadAction<number>) => {
+      delete state.items[action.payload];
+      updateTotalSum(state);
+    },
   },
 });
 
-export const { addItem, decCountItem, sendOrder } = cartSlice.actions;
+export const { addItem, decCountItem, sendOrder, deleteItem, incCountItem } =
+  cartSlice.actions;
 export const cartReducer = cartSlice.reducer;

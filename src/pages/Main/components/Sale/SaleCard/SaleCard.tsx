@@ -1,29 +1,23 @@
 import { FC } from "react";
 import styles from "./SaleCard.module.css";
+import { IProduct } from "../../../../../store/productsSlice";
 
-interface ISaleCardProps {
-  title: string;
-  imgUrl: string;
-  price: number;
-  discountPrice: number;
-}
-
-export const SaleCard: FC<ISaleCardProps> = ({
+export const SaleCard: FC<IProduct> = ({
   title,
-  imgUrl,
+  image,
   price,
-  discountPrice,
+  discont_price,
 }) => {
-  const percentage = Math.floor(((price - discountPrice) / price) * 100);
+  const percentage = Math.floor(((price - discont_price) / price) * 100);
   return (
     <div className={styles.sale_card}>
       <div className={styles.sale_card_img_container}>
-        <img className={styles.sale_card_img} src={imgUrl} alt="" />
+        <img className={styles.sale_card_img} src={image} alt="" />
       </div>
       <div className={styles.sale_card_info}>
         <h1 className={styles.sale_card_title}>{title}</h1>
         <div className={styles.sale_card_price_container}>
-          <p className={styles.sale_card_discount_price}>${discountPrice}</p>
+          <p className={styles.sale_card_discount_price}>${discont_price}</p>
           <del className={styles.sale_card_price}>${price}</del>
         </div>
       </div>

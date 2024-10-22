@@ -43,17 +43,7 @@ export function Sale() {
       </div>
       <div className={styles.sale_card}>
         {salesProducts.map((saleProduct, idx) =>
-          idx <= 3 ? (
-            <SaleCard
-              key={`sale-card-${idx}`}
-              imgUrl={apiUrl + saleProduct.image}
-              title={saleProduct.title}
-              price={saleProduct.price}
-              discountPrice={saleProduct.discont_price as number}
-            />
-          ) : (
-            ""
-          )
+          idx <= 3 ? <SaleCard {...saleProduct} key={`sale-card-${idx}`} /> : ""
         )}
       </div>
     </div>
